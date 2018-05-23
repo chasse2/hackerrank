@@ -3,7 +3,7 @@ package alg.find;
 /**
  * Find the longest palindromic substring in given string s.
  * <p>
- * This brute force solution is unforturnately O(n^3).
+ * This solution is unforturnately O(n^3).
  * <p>
  * Solution:
  * <ul>
@@ -40,8 +40,8 @@ public class LongestPalindromicString {
         int longestPalindromeLength = longestPalindrome.length();
 
         for (int i = 1; i < length; ++i) {
-            final String currentPalindromeWithCurrentCharAsCenter = findLongestPalindromeWithCurrentCharacterAsCenter(s, i);
-            final String currentPalindromeWithCurrentCharPlusNextAsCenter = findStartIndexOfLongestPalindromeWithCurrentCharPlusNextAsCenter(s, i);
+            final String currentPalindromeWithCurrentCharAsCenter = findLongestPalindromeAroundCenter(s, i, i);
+            final String currentPalindromeWithCurrentCharPlusNextAsCenter = findLongestPalindromeAroundCenter(s, i,i + 1);
 
             final String currentPalindrome = (currentPalindromeWithCurrentCharAsCenter.length() > currentPalindromeWithCurrentCharPlusNextAsCenter.length())
                     ? currentPalindromeWithCurrentCharAsCenter
@@ -57,33 +57,10 @@ public class LongestPalindromicString {
         return longestPalindrome;
     }
 
-    private String findLongestPalindromeWithCurrentCharacterAsCenter(final String s, final int currentIndex) {
-        int leftIndex = currentIndex;
-        int rightIndex = currentIndex;
+    private String findLongestPalindromeAroundCenter(final String s, int leftIndex, int rightIndex) {
 
-        while (leftIndex - 1 >= 0 && rightIndex + 1 < s.length()) {
-            if (s.charAt(leftIndex - 1) != s.charAt(rightIndex + 1)) {
-                break;
-            }
-
-            leftIndex--;
-            rightIndex++;
-        }
-
-        return s.substring(leftIndex, rightIndex + 1);
-    }
-
-    private String findStartIndexOfLongestPalindromeWithCurrentCharPlusNextAsCenter(final String s, final int currentCharacterIndex) {
-        int leftIndex = currentCharacterIndex;
-
-        if (leftIndex >= s.length() - 1) {
-            return "";
-        }
-
-        int rightIndex = currentCharacterIndex + 1;
-
-        if (s.charAt(leftIndex) != s.charAt(rightIndex)) {
-            return "";
+        if (rightIndex >= s.length() || s.charAt(leftIndex) != s.charAt(rightIndex)) {
+            return String.valueOf(s.charAt(leftIndex));
         }
 
         while (leftIndex - 1 >= 0 && rightIndex + 1 < s.length()) {
