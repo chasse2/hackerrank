@@ -2,6 +2,18 @@ package alg.linkedlist;
 
 import java.util.*;
 
+/**
+ * Merge K sorted lists.
+ * <p>
+ * This method iterate over each list and creates a map of values to counts.
+ * It then creates the final list.
+ * </p>
+ * <p>
+ * The deprecated method below it uses a PriorityQueue. Leet reported this as too slow
+ * </p>
+ *
+ */
+//todo This is a Leet problem. Not very efficient - need to revisit
 class MergeKSorted {
 
     ListNode merge(ListNode[] lists) {

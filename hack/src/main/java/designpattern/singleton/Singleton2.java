@@ -3,7 +3,7 @@ package designpattern.singleton;
 /**
  * Singleton with lazy initialization.
  *
- * Issues:
+ * <p>Cons:
  * <ul>
  *     <li>Not inherently serializable, since constructor is private</li>
  * </ul>
@@ -11,6 +11,8 @@ package designpattern.singleton;
 public class Singleton2 {
 
     private static Singleton2 INSTANCE = null;
+
+    private Singleton2() {}
 
     public static Singleton2 getInstance() {
         if (INSTANCE == null) {

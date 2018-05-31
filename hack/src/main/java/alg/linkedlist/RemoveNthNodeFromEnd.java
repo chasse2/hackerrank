@@ -1,7 +1,10 @@
 package alg.linkedlist;
 
 /**
+ * Remove nth node from linked list.
+ * <p>
  * Run time is O(n)
+ * </p>
  */
 public class RemoveNthNodeFromEnd {
 

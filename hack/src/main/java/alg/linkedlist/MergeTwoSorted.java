@@ -1,7 +1,10 @@
 package alg.linkedlist;
 
 /**
- * Run time is O(n + m)
+ * Merge two sorted lists.
+ * <p>
+ *     Run time is O(n + m)
+ * </p>
  */
 class MergeTwoSorted {
 

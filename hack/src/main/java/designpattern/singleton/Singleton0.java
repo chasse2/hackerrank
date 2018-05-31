@@ -3,7 +3,7 @@ package designpattern.singleton;
 /**
  * Singleton with public static final field.
  *
- * Issues:
+ * Cons:
  * <ul>
  *     <li>Not inherently serializable, since constructor is private</li>
  *     <li>Is instantiated at class loading time (even if never used)</li>
