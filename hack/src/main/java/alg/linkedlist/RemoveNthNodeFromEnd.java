@@ -2,14 +2,6 @@ package alg.linkedlist;
 
 public class RemoveNthNodeFromEnd {
 
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     *     int val;
-     *     ListNode next;
-     *     ListNode(int x) { val = x; }
-     * }
-     */
      public ListNode remove(ListNode head, int n) {
         if (head == null) {
             return head;
