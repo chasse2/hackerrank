@@ -1,5 +1,8 @@
 package alg.linkedlist;
 
+/**
+ * Run time is O(n)
+ */
 public class RemoveNthNodeFromEnd {
 
      public ListNode remove(ListNode head, int n) {

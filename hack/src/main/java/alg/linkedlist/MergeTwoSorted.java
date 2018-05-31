@@ -1,5 +1,8 @@
 package alg.linkedlist;
 
+/**
+ * Run time is O(n + m)
+ */
 public class MergeTwoSorted {
     public ListNode merge(ListNode l1, ListNode l2) {
         ListNode newHead = null;
