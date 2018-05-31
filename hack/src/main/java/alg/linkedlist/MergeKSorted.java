@@ -1,18 +1,13 @@
 package alg.linkedlist;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class MergeKSorted {
 
     public ListNode merge(ListNode[] lists) {
         Map<Integer, Integer> valueToCountMap = new TreeMap<>();
 
-        for (int i = 0; i < lists.length; ++i) {
-            ListNode node = lists[i];
-
+        for (ListNode node : lists) {
             while (node != null) {
                 if (valueToCountMap.containsKey(node.val)) {
                     valueToCountMap.put(node.val, valueToCountMap.get(node.val) + 1);
@@ -54,6 +49,32 @@ public class MergeKSorted {
                 previousNode.next = node;
                 previousNode = node;
             }
+        }
+
+        return head;
+    }
+
+    ListNode merge_PriorityQueueSolution_TooSlowInLeet(ListNode[] lists) {
+        final Queue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(x -> x.val));
+
+        for (ListNode node : lists) {
+            while (node != null) {
+                queue.add(node);
+                node = node.next;
+            }
+        }
+
+        final ListNode head = queue.poll();
+
+        if (head == null) {
+            return null;
+        }
+
+        ListNode previousNode = head;
+
+        while (queue.peek() != null) {
+            previousNode.next = queue.poll();
+            previousNode = previousNode.next;
         }
 
         return head;
