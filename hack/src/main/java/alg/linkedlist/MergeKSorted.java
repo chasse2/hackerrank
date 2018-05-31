@@ -2,9 +2,9 @@ package alg.linkedlist;
 
 import java.util.*;
 
-public class MergeKSorted {
+class MergeKSorted {
 
-    public ListNode merge(ListNode[] lists) {
+    ListNode merge(ListNode[] lists) {
         Map<Integer, Integer> valueToCountMap = new TreeMap<>();
 
         for (ListNode node : lists) {
