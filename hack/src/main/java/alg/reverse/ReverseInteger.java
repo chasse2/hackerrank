@@ -1,4 +1,4 @@
-package alg.convert;
+package alg.reverse;
 
 /**
  * Assumes environment is 32-bit, and returns 0 on overflow.

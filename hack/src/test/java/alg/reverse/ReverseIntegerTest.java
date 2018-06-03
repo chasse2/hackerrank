@@ -1,5 +1,6 @@
-package alg.convert;
+package alg.reverse;
 
+import alg.reverse.ReverseInteger;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
