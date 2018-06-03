@@ -41,81 +41,37 @@ public class ReverseWordsInSentenceInPlace {
             sentence[endIndex - startIndex + 1] = '\0';
         }
 
+        int length = endIndex - startIndex + 1;
+
         // Remove any double spaces
-
-        int effectiveEndIndex = endIndex = startIndex + 1;
-
-        for (int i = 0; i < effectiveEndIndex - 1; ++i) {
-            if (sentence[i] == ' ' && sentence[i + 1] == ' ') {
-                int startOfNextWord = i + 1;
-
-                while (sentence[startOfNextWord] == ' ') {
-                    startOfNextWord++;
-                }
-
-
-            }
-        }
         //todo
 
         // Reverse all chars
 
-//        for (int i = 0, j = length - 1; i < length; ++i, --j) {
-//            final char tmp = sentence[i];
-//            sentence[i] = sentence[j];
-//            sentence[j] = tmp;
-//        }
-//
-//        // Reverse words
-//
-//        int startIndex = 0;
-//        int endIndex = 0;
-//
-//        while (endIndex <= length) {
-//            if (endIndex == length || sentence[endIndex] == ' ') {
-//                for (int i = startIndex, j = endIndex - 1; i < j; ++i, --j) {
-//                    final char tmp = sentence[i];
-//                    sentence[i] = sentence[j];
-//                    sentence[j] = tmp;
-//                }
-//
-//                startIndex = endIndex + 1;
-//            }
-//
-//            endIndex++;
-//        }
+        for (int i = 0, j = length - 1; i < length; ++i, --j) {
+            final char tmp = sentence[i];
+            sentence[i] = sentence[j];
+            sentence[j] = tmp;
+        }
 
-        // Remove leading, trailing, and double spaces ...
+        // Reverse words
 
-//        int insertionIndex = 0;
-//        int startOfNextWordIndex = 0;
-//
-//        while (true) {
-//            while (startOfNextWordIndex < length && sentence[startOfNextWordIndex] == ' ') {
-//                startOfNextWordIndex++;
-//            }
-//
-//            if (startOfNextWordIndex == length) {
-//                sentence[insertionIndex] = '\0';
-//                break;
-//            }
-//
-//            int endOfNextWordIndex = startOfNextWordIndex;
-//
-//            while (endOfNextWordIndex < length && endOfNextWordIndex != ' ') {
-//                endOfNextWordIndex++;
-//            }
-//
-//            while (endIndex < length && sentence[endIndex] == ' ') {
-//                endIndex++;
-//            }
-//
-//            for (int i = startOfNextWordIndex; i < endOfNextWordIndex; ++i) {
-//                sentence[insertionIndex++] = sentence[i];
-//            }
-//
-//            startOfNextWordIndex = endOfNextWordIndex;
-//        }
+        startIndex = 0;
+        endIndex = 0;
+
+        while (endIndex <= length) {
+            if (endIndex == length || sentence[endIndex] == ' ') {
+                for (int i = startIndex, j = endIndex - 1; i < j; ++i, --j) {
+                    final char tmp = sentence[i];
+                    sentence[i] = sentence[j];
+                    sentence[j] = tmp;
+                }
+
+                startIndex = endIndex + 1;
+            }
+
+            endIndex++;
+        }
 
         return sentence;
     }

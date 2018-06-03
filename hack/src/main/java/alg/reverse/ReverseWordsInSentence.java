@@ -7,9 +7,10 @@ package alg.reverse;
  */
 public class ReverseWordsInSentence {
 
-    public final String reverse(final String sentence) {
+    public final String reverse(final String nominalSentence) {
+        final String sentence = nominalSentence.trim().replaceAll("\\s+", " ");
         final int length = sentence.length();
-        final char[] reversed = new char[sentence.length()];
+        final char[] reversed = new char[length];
 
         for (int i = 0, j = length - 1; i < length; ++i, --j) {
             reversed[j] = sentence.charAt(i);
