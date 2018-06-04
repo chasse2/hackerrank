@@ -27,4 +27,9 @@ public class LengthOfLongestSubstringWithoutRepeatingCharactersTest {
     public void testCalculateCase3() {
         assertEquals(3, calculator.calculate("AABC"));
     }
+
+    @Test
+    public void testCalculateCase4() {
+        assertEquals(2, calculator.calculate("abba"));
+    }
 }

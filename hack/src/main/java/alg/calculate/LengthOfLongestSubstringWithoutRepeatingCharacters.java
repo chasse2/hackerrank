@@ -7,7 +7,6 @@ public class LengthOfLongestSubstringWithoutRepeatingCharacters {
     public final int calculate(final String s) {
         int lengthOfLongest = 0;
 
-        final Map<Integer, Character> indexToLetterMap = new HashMap<>();
         final Map<Character, Integer> letterToIndexMap = new HashMap<>();
         int startOfCurrent = 0;
 
@@ -17,16 +16,11 @@ public class LengthOfLongestSubstringWithoutRepeatingCharacters {
             if (letterToIndexMap.containsKey(letter)) {
                 int indexOfPreviousOccurrence = letterToIndexMap.get(letter);
 
-                for (int j = startOfCurrent; j <= indexOfPreviousOccurrence; ++j) {
-                    final Character characterToRemove = indexToLetterMap.get(j);
-                    letterToIndexMap.remove(characterToRemove);
-                    indexToLetterMap.remove(j);
+                if (indexOfPreviousOccurrence >= startOfCurrent) {
+                    startOfCurrent = indexOfPreviousOccurrence + 1;
                 }
-
-                startOfCurrent = indexOfPreviousOccurrence + 1;
             }
 
-            indexToLetterMap.put(i, letter);
             letterToIndexMap.put(letter, i);
 
             int lengthOfCurrent = i - startOfCurrent + 1;
