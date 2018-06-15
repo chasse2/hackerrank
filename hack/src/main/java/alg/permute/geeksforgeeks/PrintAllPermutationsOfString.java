@@ -1,4 +1,4 @@
-package alg.permute;
+package alg.permute.geeksforgeeks;
 
 /**
  * Print n! combinations, including duplicates

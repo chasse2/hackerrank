@@ -10,7 +10,6 @@ package designpattern.singleton;
  * </ul>
  */
 public class Singleton0 {
-
     public static final Singleton0 INSTANCE = new Singleton0();
 
     private Singleton0() {}

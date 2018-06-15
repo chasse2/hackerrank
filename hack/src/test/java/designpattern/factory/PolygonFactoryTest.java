@@ -15,7 +15,7 @@ public class PolygonFactoryTest {
 
     @Test
     public void createHexagon() {
-        assertEquals(Hexagon.class.getName(), factory.create(4).getClass().getName());
+        assertEquals(Rectangle.class.getName(), factory.create(4).getClass().getName());
     }
 
     @Test

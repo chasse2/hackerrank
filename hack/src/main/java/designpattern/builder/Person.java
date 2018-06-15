@@ -1,12 +1,12 @@
 package designpattern.builder;
 
 /**
- * The Builder pattern avoids multiple constructors when there many optional parameters
+ * The Builder pattern avoids multiple constructors when there are many optional parameters
  *     <ul>
  *         <li>Inner class is {@code static} to allow access without instantiating the outer class</li>
  *         <li>Any required parameters are passed to the {@code Builder}'s constructor</li>
  *         <li>Any optional parameters are passed to the {@code Builder}'s setters</li>
- *         <li>If any invariants are violated, the {@code build} method should thrown an {@code IllegalStateException}</li>
+ *         <li>If any invariants are violated, the {@code build} method should throw an {@code IllegalStateException}</li>
  *         <li>The exception's detail message should indicate which invariant is violated</li>
  *     </ul>
  * <p>

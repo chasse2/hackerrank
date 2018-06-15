@@ -7,7 +7,7 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
-public class JavaHashset {
+public class JavaHashSet {
 
     private final Set<String> items = new HashSet<>();
 

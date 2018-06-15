@@ -1,4 +1,4 @@
-package alg.permute;
+package alg.permute.crackingthecodinginterview;
 
 import org.junit.Test;
 
@@ -12,6 +12,12 @@ public class PrintAllPermutationsOfStringTest {
     public void testPrint() {
         printer.print("abc");
     }
+
+    @Test
+    public void testPrintABCD() {
+        printer.print("abcd");
+    }
+
 
     @Test
     public void testPrintWithDuplicates() {

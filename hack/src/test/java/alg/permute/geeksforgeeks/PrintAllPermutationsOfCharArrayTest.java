@@ -1,8 +1,7 @@
-package alg.permute;
+package alg.permute.geeksforgeeks;
 
+import alg.permute.geeksforgeeks.PrintAllPermutationsOfCharArray;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class PrintAllPermutationsOfCharArrayTest {
 

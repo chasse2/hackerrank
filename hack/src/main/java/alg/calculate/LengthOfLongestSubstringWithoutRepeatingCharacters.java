@@ -2,6 +2,9 @@ package alg.calculate;
 
 import java.util.*;
 
+/**
+ * Runs in O(n) time.
+ */
 public class LengthOfLongestSubstringWithoutRepeatingCharacters {
 
     public final int calculate(final String s) {

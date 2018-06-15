@@ -7,7 +7,7 @@ public class PolygonFactory {
             case 3:
                 return new Triangle();
             case 4:
-                return new Hexagon();
+                return new Rectangle();
             case 5:
                 return new Pentagon();
         }

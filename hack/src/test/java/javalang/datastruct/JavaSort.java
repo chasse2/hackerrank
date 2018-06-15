@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class JavaSort {
+
     class Student {
         private int id;
         private String fname;

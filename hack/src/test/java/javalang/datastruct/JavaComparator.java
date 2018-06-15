@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class JavaComparator {
+
     class Player{
         String name;
         int score;

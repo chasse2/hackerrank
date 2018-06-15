@@ -9,6 +9,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class JavaStack {
+
     private final Map<Character, Character> characterMap = new HashMap<Character, Character>(){{
         put(']','[');
         put('}','{');

@@ -3,6 +3,9 @@ package interview.pimco;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * This is an example of a Decorator pattern.
+ */
 public class FilteringIterator implements Iterator {
     private final Iterator iterator;
     private final IObjectTest objectTest;
