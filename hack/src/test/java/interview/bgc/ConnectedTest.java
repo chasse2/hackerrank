@@ -7,7 +7,7 @@ import java.util.Map;
 public class ConnectedTest {
     @Test
     public final void test() {
-        pseudoMain(new String[]{ "/tmp/cities.txt", "Los Angeles", "San Diego"});
+        pseudoMain(new String[]{ "/tmp/cities2.txt", "New York", "New York"});
 
     }
 
@@ -21,11 +21,12 @@ public class ConnectedTest {
         final String city1 = args[1];
         final String city2 = args[2];
 
-        final Map<String, Node> nodes = new GraphBuilder().build(inputFile);
-//        System.out.println("testing ...");
-//        nodes.forEach((k, v) -> System.out.println(v.toString()));
-
-        final boolean connected = new Connected().connected(nodes, city1, city2);
-        System.out.println(connected + " " + city1 + ", " + city2);
+        try {
+            final Map<String, Node> nodes = new GraphBuilder().build(inputFile);
+            final boolean connected = new Connected().connected(nodes, city1, city2);
+            System.out.println(connected ? "yes" : "no");
+        } catch (final Exception cause) {
+            System.out.println(cause.getMessage());
+        }
     }
 }

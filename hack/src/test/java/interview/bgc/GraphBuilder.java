@@ -43,7 +43,7 @@ class GraphBuilder {
                 try {
                     connection = new Connection(line);
                 } catch (final Exception cause) {
-                    throw new IllegalArgumentException("Invalid line in input file : " + lineCount[0]);
+                    throw new IllegalArgumentException("Invalid content on line " + lineCount[0]);
                 }
 
                 final Node node1 = nodes.computeIfAbsent(connection.city1, x -> new Node(connection.city1));
@@ -52,8 +52,8 @@ class GraphBuilder {
                 node1.addConnection(node2);
                 node2.addConnection(node1);
             });
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (final IOException cause) {
+            throw new IllegalArgumentException("Error reading file " + cause.getMessage());
         }
 
         return nodes;

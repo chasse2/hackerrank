@@ -16,10 +16,13 @@ public class Connected {
         final String city1 = args[1];
         final String city2 = args[2];
 
-        final Map<String, Node> nodes = new GraphBuilder().build(inputFile);
-
-        final boolean connected = new Connected().connected(nodes, city1, city2);
-        System.out.println(connected ? "yes" : "no");
+        try {
+            final Map<String, Node> nodes = new GraphBuilder().build(inputFile);
+            final boolean connected = new Connected().connected(nodes, city1, city2);
+            System.out.println(connected ? "yes" : "no");
+        } catch (final Exception cause) {
+            System.out.println(cause.getMessage());
+        }
     }
 
     boolean connected(final Map<String, Node> nodes, final String rootCity, final String targetCity) {
