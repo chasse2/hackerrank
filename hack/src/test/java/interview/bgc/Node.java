@@ -2,26 +2,35 @@ package interview.bgc;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Node {
-    private final String city;
-    private final Set<Node> connectedNodes = new HashSet<>();
+    final String city;
     private boolean visited;
+    private final Set<Node> connectedNodes = new HashSet<>();
 
-    public Node(final String city) {
+    Node(final String city) {
         this.city = city;
         this.visited = false;
     }
 
-    public void addConnection(final Node node) {
+    void addConnection(final Node node) {
         this.connectedNodes.add(node);
     }
 
-    public void setVisited() {
+    final Set<Node> getConnectedNodes() {
+        return new HashSet<>(this.connectedNodes);
+    }
+
+    void setVisited() {
         this.visited = true;
     }
 
-    public boolean visited() {
+    boolean visited() {
         return this.visited;
+    }
+
+    public String toString() {
+        return this.city + " : " + connectedNodes.stream().map(x -> x.city).collect(Collectors.joining(","));
     }
 }
