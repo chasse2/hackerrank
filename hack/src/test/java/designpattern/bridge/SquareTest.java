@@ -12,5 +12,4 @@ public class SquareTest {
 
         assertEquals("Square drawn. Color is Blue.", shape.draw());
     }
-
 }
