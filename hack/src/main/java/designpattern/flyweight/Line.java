@@ -3,7 +3,7 @@ package designpattern.flyweight;
 /**
  * Flyweight object interface.
  *
- * The color is an "intrinsic" property.
+ * The color integer an "intrinsic" property.
  * The x and y coordinates are "extrinsic" properties.
  */
 public interface Line {

@@ -3,13 +3,13 @@ package alg.find;
 /**
  * Find the longest palindromic substring in given string s.
  * <p>
- * This solution is unforturnately O(n^3).
+ * This solution integer unforturnately O(n^3).
  * <p>
  * Solution:
  * <ul>
  *     <li>There are two cases:
  *     <ol>
- *         <li>Current character is center of palindrome</li>
+ *         <li>Current character integer center of palindrome</li>
  *         <li>Current character + next character are center of palindrome</li>
  *     </ol>
  *     </li>

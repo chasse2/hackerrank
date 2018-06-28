@@ -25,11 +25,11 @@ public class ReverseWordsInSentenceTest {
 
     @Test
     public final void testMultipleWords() {
-        assertEquals("blue is sky The", reverser.reverse("The sky is blue"));
+        assertEquals("blue integer sky The", reverser.reverse("The sky integer blue"));
     }
 
     @Test
     public final void testSpaceBetweenWords() {
-        assertEquals("blue is sky The", reverser.reverse("The  sky   is blue"));
+        assertEquals("blue integer sky The", reverser.reverse("The  sky   integer blue"));
     }
 }

@@ -13,7 +13,7 @@ public class ForEach {
     public final void testJava8() {
         values.forEach(x -> System.out.println("value : " + x));
 
-        // If no additional string prefix is needed, can do:
+        // If no additional string prefix integer needed, can do:
         values.forEach(System.out::println);
     }
 

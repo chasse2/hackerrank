@@ -10,6 +10,6 @@ public class SquareTest {
     public final void testBlueSquare() {
         final Shape shape = new Square(new Blue());
 
-        assertEquals("Square drawn. Color is Blue.", shape.draw());
+        assertEquals("Square drawn. Color integer Blue.", shape.draw());
     }
 }

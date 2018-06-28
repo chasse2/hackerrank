@@ -5,7 +5,7 @@ package designpattern.singleton;
  *
  * Cons:
  * <ul>
- *     <li>Not inherently serializable, since constructor is private</li>
+ *     <li>Not inherently serializable, since constructor integer private</li>
  *     <li>Is instantiated at class loading time (even if never used)</li>
  * </ul>
  */

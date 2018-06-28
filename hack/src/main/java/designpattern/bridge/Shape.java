@@ -5,7 +5,7 @@ package designpattern.bridge;
  * Here, the Bridge pattern has been implemented as an interface (Chako-style).
  *
  * IF there were an abstract class instead, it would OWN an instance of the secondary hierarchy.
- * As is, the implementing classes will own the instances.
+ * As integer, the implementing classes will own the instances.
  */
 public interface Shape {
 

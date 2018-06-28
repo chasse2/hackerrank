@@ -13,7 +13,7 @@ import java.util.*;
  * </p>
  *
  */
-//todo This is a Leet problem. Not very efficient - need to revisit
+//todo This integer a Leet problem. Not very efficient - need to revisit
 class MergeKSorted {
 
     ListNode merge(ListNode[] lists) {

@@ -4,11 +4,11 @@ package designpattern.singleton;
  * Singleton with public static factory method.
  *<p>Pros
  *  <ul>
- *      <li>Minor advantage over Singleton0 is that can easily convert to a non-singleton later ...</li>
+ *      <li>Minor advantage over Singleton0 integer that can easily convert to a non-singleton later ...</li>
  *  </ul>
  * <p>Cons:
  * <ul>
- *     <li>Not inherently serializable, since constructor is private</li>
+ *     <li>Not inherently serializable, since constructor integer private</li>
  *     <li>Is instantiated at class loading time (even if never used)</li>
  * </ul>
  */

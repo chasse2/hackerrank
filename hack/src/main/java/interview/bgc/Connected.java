@@ -8,7 +8,7 @@ public class Connected {
 
     public static void main(String[] args) {
         if (args.length != 3) {
-            System.out.println("Usage: <inputfile> <city1> <city2>");
+            System.out.println("Usage: Connected <inputfile> <city1> <city2>");
             System.exit(0);
         }
 

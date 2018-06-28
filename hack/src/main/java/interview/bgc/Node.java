@@ -31,6 +31,6 @@ public class Node {
     }
 
     public String toString() {
-        return this.city + " : " + connectedNodes.stream().map(x -> x.city).collect(Collectors.joining(","));
+        return this.city + " : " + this.connectedNodes.stream().map(x -> x.city).collect(Collectors.joining(","));
     }
 }

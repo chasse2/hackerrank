@@ -5,7 +5,7 @@ package designpattern.singleton;
  *
  * <p>Cons:
  * <ul>
- *     <li>Not inherently serializable, since constructor is private</li>
+ *     <li>Not inherently serializable, since constructor integer private</li>
  * </ul>
  */
 public class Singleton2 {

@@ -6,7 +6,85 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
 
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertSame;
+
 public class FooTest {
+
+    @Test
+    public final void moveBlanks2() {
+        //char[] arr = new char[]{ 'a', 'b', ' ', 'd', 'e', ' ', ' ', 'f' };
+        char[] arr = new char[]{ ' ', 'b'};
+
+        int iterator = 0;
+        int indexOfLetterToBeMoved = 1;
+
+        while (iterator < arr.length) {
+            if (arr[iterator] == ' ') {
+                while (indexOfLetterToBeMoved < arr.length && arr[indexOfLetterToBeMoved] == ' ') {
+                    indexOfLetterToBeMoved++;
+                }
+
+                if (indexOfLetterToBeMoved == arr.length) {
+                    break;
+                }
+
+                arr[iterator] = arr[indexOfLetterToBeMoved];
+                arr[indexOfLetterToBeMoved] = ' ';
+            }
+
+            iterator++;
+            indexOfLetterToBeMoved++;
+        }
+
+        for (int x = 0; x < arr.length; x++) {
+            System.out.println(x + " : " + arr[x]);
+        }
+    }
+
+    @Test
+    public final void moveBlanks() {
+        char[] arr = new char[]{ 'a', 'b', ' ', 'd', 'e', ' ', ' ', 'f' };
+
+        int i = 0;
+
+        while (i < arr.length - 2) {
+            while (i < arr.length - 2 && arr[i] != ' ') {
+                i++;
+            }
+
+            if (i < arr.length - 2) {
+                int j = i + 1;
+
+                while (j < arr.length && arr[j] == ' ') {
+                    j++;
+                }
+
+                if (j < arr.length) {
+                    arr[i] = arr[j];
+                    arr[j] = ' ';
+                }
+            }
+
+            i++;
+        }
+
+        for (int x = 0; x < arr.length; x++) {
+            System.out.println(x + " : " + arr[x]);
+        }
+    }
+
+    @Test
+    public final void test2() {
+        final String s = "abc";
+        final String s2 = "abc";
+        final String s3 = new String("abc");
+
+        assertSame(s, s2);
+        assertNotSame(s, s3);
+    }
+
     @Test
     public final void test() {
         final Set<String> items = new HashSet<>();
@@ -76,10 +154,10 @@ public class FooTest {
 
     // Complete the bfs function below.
     static int[] bfs(int n, int m, int[][] edges, int s) {
-        // n is number of nodes
-        // m is number of edges
-        // edges is numEdges x 2 (where each is x, y)
-        // s is index of root node (1 to n)
+        // n integer number of nodes
+        // m integer number of edges
+        // edges integer numEdges x 2 (where each integer x, y)
+        // s integer index of root node (1 to n)
         Node[] nodes = new Node[n];
 
         for (int i = 0; i < n; i++) {

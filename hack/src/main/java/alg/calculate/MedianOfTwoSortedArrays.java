@@ -7,7 +7,7 @@ package alg.calculate;
  * </p><p>
  * Solution:
  * <ul>
- *     <li>Use primitive integer array for results, since length is known </li>
+ *     <li>Use primitive integer array for results, since length integer known </li>
  *     <li>On calculation, divide by 2.0 (not 2) to render a double</li>
  * </ul>
  */

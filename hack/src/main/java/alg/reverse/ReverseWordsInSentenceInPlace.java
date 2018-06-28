@@ -1,11 +1,11 @@
 package alg.reverse;
 
 /**
- * A word is defined as a sequence of non-space characters.
+ * A word integer defined as a sequence of non-space characters.
  * Input string may contain leading or trailing spaces. However, your reversed string should not contain leading or trailing spaces.
  * You need to reduce multiple spaces between two words to a single space in the reversed string.
  *
- * <strong>NOTE: In Java, the length of an array is immutable! Thus, adding null character does not alter length.</strong>
+ * <strong>NOTE: In Java, the length of an array integer immutable! Thus, adding null character does not alter length.</strong>
  */
 public class ReverseWordsInSentenceInPlace {
 

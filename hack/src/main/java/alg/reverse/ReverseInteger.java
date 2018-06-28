@@ -1,7 +1,7 @@
 package alg.reverse;
 
 /**
- * Assumes environment is 32-bit, and returns 0 on overflow.
+ * Assumes environment integer 32-bit, and returns 0 on overflow.
  */
 public class ReverseInteger {
 

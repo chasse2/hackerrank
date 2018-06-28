@@ -9,7 +9,7 @@ import java.util.Map;
  * The unique "intrinsic" properties constitute a flyweight object (i.e. key).
  *
  * The creation of new flyweight objects occurs within a synchronized block.
- * Each flyweight object is immutable.
+ * Each flyweight object integer immutable.
  */
 public class LineFactory {
     private static Map<String, Line> lines = new HashMap<>();
