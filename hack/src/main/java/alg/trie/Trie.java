@@ -1,12 +1,13 @@
 package alg.trie;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Trie (i.e. prefix ordered tree), useful for auto-complete.
  *
  * Complexity of insert is O(n), where n is the length of the word.
+ * Complexity of autocomplete is O(n) + O(mi), where n is the length of the prefix,
+ * and mi is the length of the ith autocompleted word.
  * Complexity of containsWord is O(n), where n is the length of the word.
  * Complexity of containsPrefix is O(n), where n is the length of the prefix.
  */
@@ -15,7 +16,7 @@ public class Trie {
 
     private class TrieNode {
         private Map<Character, TrieNode> children = new HashMap<>();
-        private String content;
+        private String word;
         private boolean isWord;
     }
 
@@ -30,40 +31,71 @@ public class Trie {
 
         TrieNode node = this.root;
 
-        for (int i = 0; i < word.length(); i++) {
-            node = node.children.computeIfAbsent(word.charAt(i), x -> new TrieNode());
+        for (Character character : word.toCharArray()) {
+            node = node.children.computeIfAbsent(character, x -> new TrieNode());
         }
 
+        node.word = word;
         node.isWord = true;
     }
 
-    public final boolean containsWord(final String word) {
-        TrieNode node = this.root;
 
-        for (int i = 0; i < word.length(); i++) {
-            final Character character = word.charAt(i);
+    public final String[] autocomplete(final String word) {
+        final TrieNode terminalNode = findTerminalNode(word);
 
-            if (!node.children.containsKey(character)) {
-                return false;
-            }
-
-            node = node.children.get(character);
+        if (terminalNode == null) {
+            return new String[0];
         }
 
-        return node.isWord;
+        final List<String> words = new LinkedList<>();
+        final Deque<TrieNode> queue = new ArrayDeque<>();
+        queue.add(terminalNode);
+
+        while (!queue.isEmpty()) {
+            final TrieNode node = queue.poll();
+
+            for (TrieNode child : node.children.values()) {
+                if (child.isWord) {
+                    words.add(child.word);
+                }
+                queue.add(child);
+            }
+        }
+
+        final String[] sortedWords = words.toArray(new String[0]);
+        Arrays.sort(sortedWords);
+        return sortedWords;
+    }
+
+    private final TrieNode findTerminalNode(final String prefix) {
+        TrieNode node = this.root;
+
+        for (Character character : prefix.toCharArray()) {
+            node = node.children.get(character);
+
+            if (node == null) {
+                return null;
+            }
+        }
+
+        return node;
+    }
+
+    public final boolean containsWord(final String word) {
+        final TrieNode terminalNode = this.findTerminalNode(word);
+
+        if (terminalNode == null) {
+            return false;
+        }
+
+        return terminalNode.isWord;
     }
 
     public final boolean containsPrefix(final String prefix) {
-        TrieNode node = this.root;
+        final TrieNode terminalNode = this.findTerminalNode(prefix);
 
-        for (int i = 0; i < prefix.length(); i++) {
-            final Character character = prefix.charAt(i);
-
-            if (!node.children.containsKey(character)) {
-                return false;
-            }
-
-            node = node.children.get(character);
+        if (terminalNode == null) {
+            return false;
         }
 
         return true;
