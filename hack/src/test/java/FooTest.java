@@ -1,9 +1,7 @@
 import javafx.collections.transformation.SortedList;
 import org.junit.Test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
 import static org.junit.Assert.assertNotEquals;
@@ -11,6 +9,85 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
 public class FooTest {
+    private static final long serialVersionUID = 1L;
+
+    @Test
+    public final void fooTest() {
+        //Upper Bounded Integer List
+        List<Number> list1= Arrays.asList(4,7.8);
+        int i = Integer.class.cast(list1.get(0));
+        double d = Double.class.cast(list1.get(1));
+        //printing the sum of elements in list
+        System.out.println("Total sum is:"+sum2(list1));
+
+//        //Double list
+//        List<Double> list2=Arrays.asList(4.1,5.1,6.1);
+//
+//        //printing the sum of elements in list
+//        System.out.print("Total sum is:"+sum2(list2));
+
+        Runnable runnable = () -> {
+            // your code here ...
+        };
+        Thread t = new Thread(runnable);
+        t.start();
+
+    }
+
+    private static double sum2(List<Number> list)
+    {
+        double sum=0.0;
+        for (Number i: list)
+        {
+            sum+=i.doubleValue();
+        }
+
+        return sum;
+    }
+
+    @Test
+    public final void wildcardTest() {
+        //Integer List
+        List<Integer> list1 = Arrays.asList(1, 2, 3);
+
+        //Double list
+        List<Double> list2 = Arrays.asList(1.1, 2.2, 3.3);
+
+        printlist(list1);
+
+        printlist(list2);
+    }
+
+    private static void printlist (List<?> list)
+    {
+        System.out.println(list);
+    }
+
+    @Test
+    public final void wildcardUpperBoundTest() {
+        //Upper Bounded Integer List
+        List<Integer> list1= Arrays.asList(4,5,6,7);
+
+        //printing the sum of elements in list
+        System.out.println("Total sum is:"+sum(list1));
+
+        //Double list
+        List<Double> list2=Arrays.asList(4.1,5.1,6.1);
+
+        //printing the sum of elements in list
+        System.out.print("Total sum is:"+sum(list2));
+    }
+
+    private static double sum(List<? extends Number> list)
+    {
+        double sum=0.0;
+        for (Number i: list)
+        {
+            sum+=i.doubleValue();
+        }
+
+        return sum;
+    }
 
     @Test
     public final void moveBlanks2() {
