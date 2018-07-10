@@ -23,7 +23,7 @@ public class LongestCommonPrefix {
         return longestPrefix;
     }
 
-    private final String longestPrefix(final String s1, final String s2) {
+    private String longestPrefix(final String s1, final String s2) {
         final int shortestStringLength = Math.min(s1.length(), s2.length());
         StringBuffer longestPrefix = new StringBuffer("");
 
