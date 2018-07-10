@@ -9,6 +9,10 @@ public class LongestCommonPrefixTest {
 
     @Test
     public void testFind() {
+        assertEquals("a", finder.find(new String[]{ "a", "a"}));
+        assertEquals("a", finder.find(new String[]{ "aa", "a"}));
+        assertEquals("", finder.find(new String[]{ "", ""}));
+        assertEquals("", finder.find(new String[]{ "", "b"}));
         assertEquals("flo", finder.find(new String[]{ "flower", "flow", "flouride"}));
         assertEquals("", finder.find(new String[]{ "flower", "flow", "flouride", "abc"}));
     }

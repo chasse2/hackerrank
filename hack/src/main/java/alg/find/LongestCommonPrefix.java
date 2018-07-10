@@ -1,5 +1,6 @@
 package alg.find;
 
+import javax.print.DocFlavor;
 import java.util.*;
 
 /**
@@ -10,35 +11,46 @@ import java.util.*;
  */
 public class LongestCommonPrefix {
     private class Node {
-        public final Map<Character, Node> children = new HashMap<>();
-        public final String value;
+        final Map<Character, Node> children = new HashMap<>();
+        final String value;
+        boolean isTerminal = false;
 
-        public Node() {
+        Node() {
             this.value = "";
         }
 
-        public Node(final String value) {
+        Node(final String value) {
             this.value = value;
         }
 
-        public final Node addChild(final Character c) {
+        final Node addChild(final Character c) {
             if (!children.containsKey(c)) {
                 children.put(c, new Node(this.value + c));
             }
 
             return children.get(c);
         }
+
+        final void setTerminal() {
+            this.isTerminal = true;
+        }
     }
 
     private class Trie {
-        public final Node root = new Node();
+        final Node root = new Node();
 
-        public final void insert(final String s) {
+        final void insert(final String s) {
             Node node = this.root;
+
+            if (s.isEmpty()) {
+                return;
+            }
 
             for (Character c : s.toCharArray()) {
                 node = node.addChild(c);
             }
+
+            node.setTerminal();
         }
     }
 
@@ -46,6 +58,10 @@ public class LongestCommonPrefix {
         final Trie trie = new Trie();
 
         for (String item : items) {
+            if (item.isEmpty()) {
+                return "";
+            }
+
             trie.insert(item);
         }
 
@@ -56,14 +72,14 @@ public class LongestCommonPrefix {
         while (!queue.isEmpty()) {
             final Node node = queue.remove();
 
+            if (node.isTerminal) {
+                return node.value;
+            }
+
             Collection<Node> children = node.children.values();
 
             if (children.size() != 1) {
-                if (node.value.length() > longestPrefix.length()) {
-                    longestPrefix = node.value;
-                }
-
-                continue;
+                return node.value;
             }
 
             // There is only one child to add ...
