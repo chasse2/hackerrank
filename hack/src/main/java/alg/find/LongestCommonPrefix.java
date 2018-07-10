@@ -6,86 +6,35 @@ import java.util.*;
 /**
  * Find the longest common prefix amongst given array of strings.
  *
- * Algo builds a tree, then performs breadth-first search to find longest prefix
- * (a prefix is complete at the node where number of children is not 1).
+ * Runtime is O(S), where S is the sum of all characters in all strings.
  */
 public class LongestCommonPrefix {
-    private class Node {
-        final Map<Character, Node> children = new HashMap<>();
-        final String value;
-        boolean isTerminal = false;
-
-        Node() {
-            this.value = "";
-        }
-
-        Node(final String value) {
-            this.value = value;
-        }
-
-        final Node addChild(final Character c) {
-            if (!children.containsKey(c)) {
-                children.put(c, new Node(this.value + c));
-            }
-
-            return children.get(c);
-        }
-
-        final void setTerminal() {
-            this.isTerminal = true;
-        }
-    }
-
-    private class Trie {
-        final Node root = new Node();
-
-        final void insert(final String s) {
-            Node node = this.root;
-
-            if (s.isEmpty()) {
-                return;
-            }
-
-            for (Character c : s.toCharArray()) {
-                node = node.addChild(c);
-            }
-
-            node.setTerminal();
-        }
-    }
-
     public final String find(final String[] items) {
-        final Trie trie = new Trie();
-
-        for (String item : items) {
-            if (item.isEmpty()) {
-                return "";
-            }
-
-            trie.insert(item);
+        if (items.length == 0) {
+            return "";
         }
 
-        final Queue<Node> queue = new ArrayDeque<>();
-        queue.add(trie.root);
-        String longestPrefix = "";
+        String longestPrefix = items[0];
 
-        while (!queue.isEmpty()) {
-            final Node node = queue.remove();
-
-            if (node.isTerminal) {
-                return node.value;
-            }
-
-            Collection<Node> children = node.children.values();
-
-            if (children.size() != 1) {
-                return node.value;
-            }
-
-            // There is only one child to add ...
-            children.forEach(x -> queue.add(x));
+        for (int i = 1; i < items.length; i++) {
+            longestPrefix = this.longestPrefix(longestPrefix, items[i]);
         }
 
         return longestPrefix;
+    }
+
+    private final String longestPrefix(final String s1, final String s2) {
+        final int shortestStringLength = Math.min(s1.length(), s2.length());
+        StringBuffer longestPrefix = new StringBuffer("");
+
+        for (int i =  0; i < shortestStringLength; i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                break;
+            }
+
+            longestPrefix.append(s1.charAt(i));
+        }
+
+        return longestPrefix.toString();
     }
 }
