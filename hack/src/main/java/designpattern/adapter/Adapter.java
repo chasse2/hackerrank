@@ -3,7 +3,7 @@ package designpattern.adapter;
 /**
  * Example of an adapter which implements expected interface.
  *
- * Owns instance of underlying third-party.
+ * Owns instance of underlying actual.
  */
 
 public class Adapter implements Expected {
