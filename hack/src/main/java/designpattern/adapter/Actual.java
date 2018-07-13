@@ -1,7 +1,7 @@
 package designpattern.adapter;
 
 /**
- * Actual (i.e. Third-party) implementation
+ * Actual (e.g. Third-party) implementation
  */
 public class Actual {
     public String getIdentifier() {
