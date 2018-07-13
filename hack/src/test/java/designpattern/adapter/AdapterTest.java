@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SedanTest {
+public class AdapterTest {
     @Test
     public void testGetModel() {
-        final Car car = new Sedan(new FrenchLuxury());
+        final Expected car = new Adapter(new Actual());
 
-        assertEquals("FrenchLuxury", car.getModel());
+        assertEquals("Actual", car.getName());
     }
 }
