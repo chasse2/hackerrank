@@ -4,10 +4,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LengthOfLongestSubstringWithoutRepeatingCharactersTest {
+public class LengthOfLongestSubstringTest {
 
-//    final LengthOfLongestSubstringWithoutRepeatingCharacters calculator = new LengthOfLongestSubstringWithoutRepeatingCharacters();
-    final FooTest calculator = new FooTest();
+    final LengthOfLongestSubstring calculator = new LengthOfLongestSubstring();
 
     @Test
     public void testCalculateCase0() {
