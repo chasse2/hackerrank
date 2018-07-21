@@ -1,18 +1,10 @@
 package alg.calculate;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * Uses sliding window approach.
- *
- * In the worst case, each character will be visited twice - once by j and once by i.
- *
- * Time complexity : O(2n) = O(n)
- * Space complexity is size of map: O(min(16, m)) where m is the number of unique characters in s
- */
-public class LengthOfLongestSubstringWithoutRepeatingCharacters {
-
-    public final int calculate(final String s) {
+public class FooTest {
+    final int calculate(final String s) {
         int answer = 0;
         final Map<Character, Integer> map = new HashMap<>();
 

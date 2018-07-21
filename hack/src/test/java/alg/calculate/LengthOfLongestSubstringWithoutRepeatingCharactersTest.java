@@ -6,7 +6,8 @@ import static org.junit.Assert.*;
 
 public class LengthOfLongestSubstringWithoutRepeatingCharactersTest {
 
-    final LengthOfLongestSubstringWithoutRepeatingCharacters calculator = new LengthOfLongestSubstringWithoutRepeatingCharacters();
+//    final LengthOfLongestSubstringWithoutRepeatingCharacters calculator = new LengthOfLongestSubstringWithoutRepeatingCharacters();
+    final FooTest calculator = new FooTest();
 
     @Test
     public void testCalculateCase0() {
