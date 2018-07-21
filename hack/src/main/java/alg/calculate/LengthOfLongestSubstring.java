@@ -3,12 +3,20 @@ package alg.calculate;
 import java.util.*;
 
 /**
- * Uses sliding window approach.
+ * Given a string, find the length of the longest substring without repeating characters.
+ *
+ * This alg uses sliding window approach.
  *
  * In the worst case, each character will be visited twice - once by j and once by i.
  *
  * Time complexity : O(2n) = O(n)
  * Space complexity is size of map: O(min(16, m)) where m is the number of unique characters in s
+ *
+ * Possible improvements:
+ * 1) If information is known about the character set, could replace Map with int[],
+ *    and use character as index ...
+ *
+ * LeetCode: https://leetcode.com/problems/longest-substring-without-repeating-characters/solution/
  */
 public class LengthOfLongestSubstring {
 

@@ -1,6 +1,15 @@
 package alg.quicksort;
 
-public class PpeOptimizedQuickSort {
+/**
+ * According to "Programming Interviews Exposed":
+ * "This is about as good as quicksort can get!
+ * The only other optimization that might be worth considering is to replace the recursive call
+ * with something like insertion sort after the partition size falls below a certain threshold."
+ *
+ * Time complexity on average is O(N Log(N))
+ * Space complexity is O(log(N)) for in-place version for recursive stack frames
+ */
+public class PieOptimizedQuickSort {
 
     public void quicksortOptimized(int[] data) {
         quicksortOptimized(data, 0, data.length - 1);
@@ -13,7 +22,7 @@ public class PpeOptimizedQuickSort {
 
         while (i <= j) {
 
-            // Find leftmost value great than or equal to the pivot
+            // Find leftmost value greater than or equal to the pivot
             while (data[i] < pivotValue) {
                 ++i;
             }
@@ -31,7 +40,7 @@ public class PpeOptimizedQuickSort {
             }
         }
 
-        // Apply the algorithm to the partitions we made, if any
+        // Apply the algorithm to the partitions we made, if any (NOTE: j < i )
 
         if (left < j) {
             quicksortOptimized(data, left, j);

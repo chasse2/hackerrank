@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Merge K sorted lists.
  * <p>
- * This method iterate over each list and creates a map of values to counts.
+ * This method iterates over each list and creates a map of values to counts.
  * It then creates the final list.
  * </p>
  * <p>
@@ -13,7 +13,7 @@ import java.util.*;
  * </p>
  *
  */
-//todo This integer a Leet problem. Not very efficient - need to revisit
+//todo This is a Leet problem. Not very efficient - need to revisit
 class MergeKSorted {
 
     ListNode merge(ListNode[] lists) {

@@ -1,6 +1,6 @@
 package alg.quicksort;
 
-public class PpeEfficientQuickSort {
+public class PieEfficientQuickSort {
 
     public void quicksortSwapping(int[] data) {
         quicksortSwapping(data, 0, data.length - 1);
