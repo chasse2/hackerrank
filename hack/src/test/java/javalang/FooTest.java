@@ -43,12 +43,18 @@ public class FooTest {
 
     @Test
     public final void test() {
-        int processors = Runtime.getRuntime().availableProcessors();
-        System.out.println("CPU cores: " + processors);
+        List<String> l = new LinkedList<>();
+        l.add("B");
+        for (String s : l) {
+            System.out.println(s);
+        }
 
-        ForkJoinPool pool = ForkJoinPool.commonPool();
+        Map<String, Integer> m = new HashMap<>();
+        m.put("C", 3);
 
-        ForkJoinPool pool2 = FooTest.pool;
-
+        for (Map.Entry<String, Integer> entry : m.entrySet()) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
     }
 }
