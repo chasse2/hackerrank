@@ -11,50 +11,62 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
 public class FooTest {
 
-    public enum Color {
-        BLUE(0, 0, 255) {
-            int a;
-            @Override
-            public boolean isPrimary() { return true; }
-        },
-        PURPLE(128, 0, 128),
-        RED(255, 0, 0);
-
-        public final int R;
-        public final int G;
-        public final int B;
-
-        Color(final int R, final int G, final int B) {
-            this.R = R;
-            this.G = G;
-            this.B = B;
-        }
-
-        public boolean isPrimary() {
-            return false;
-        }
+    abstract class Library {
+        abstract Iterator<Book> books();
     }
 
-    public static ForkJoinPool pool = new ForkJoinPool(2);
+    abstract class Book {
+        abstract List<String> authors();
+        abstract Iterator<Page> iterator();
+    }
+
+    abstract class Page {
+        public String page;
+    }
 
     @Test
     public final void test() {
-        List<String> l = new LinkedList<>();
-        l.add("B");
-        for (String s : l) {
-            System.out.println(s);
+//        assertEquals(0, searchInsert(new int[]{ 0 }, 0));
+        assertEquals(4, searchInsert(new int[]{ 1, 2, 5, 6 }, 7));
+    }
+
+    public int searchInsert(int[] nums, int target) {
+        if (nums.length <= 0) {
+            return 0;
         }
 
-        Map<String, Integer> m = new HashMap<>();
-        m.put("C", 3);
+        int low = 0;
+        int high = nums.length - 1;
 
-        for (Map.Entry<String, Integer> entry : m.entrySet()) {
-            System.out.println(entry.getKey());
-            System.out.println(entry.getValue());
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            if (target < nums[mid]) {
+                if (mid == 0) {
+                    return 0;
+                }
+                if (target > nums[mid - 1]) {
+                    return mid;
+                }
+
+                high = mid - 1;
+            } else {
+                if (mid == nums.length - 1) {
+                    return nums.length;
+                }
+                low = mid + 1;
+            }
         }
+
+        return -1;
     }
 }
