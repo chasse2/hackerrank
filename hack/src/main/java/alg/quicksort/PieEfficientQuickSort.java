@@ -1,5 +1,8 @@
 package alg.quicksort;
 
+/**
+ * In-place quick sort that swaps pivot to end of array
+ */
 public class PieEfficientQuickSort {
 
     public void quicksortSwapping(int[] data) {
