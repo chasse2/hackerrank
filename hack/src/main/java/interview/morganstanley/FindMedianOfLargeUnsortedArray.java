@@ -5,13 +5,8 @@ package interview.morganstanley;
  * 1) The array may be huge, e.g. a million values
  * 2) Values range from 0 to 100
  *
- * Do so without allocating another _large_ array
+ * Do so without allocating another _large_ array or sorting (e.g. in-place quicksort)
  */
-/*
-Create bucket
-Iterate over count map
-If current bucket contains medianOrHighMedianIndex
-*/
 
 public class FindMedianOfLargeUnsortedArray {
     public final double findMedian(final int[] values) {
