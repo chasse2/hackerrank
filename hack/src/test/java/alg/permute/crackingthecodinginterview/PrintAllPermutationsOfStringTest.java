@@ -9,7 +9,17 @@ public class PrintAllPermutationsOfStringTest {
     final PrintAllPermutationsOfString printer = new PrintAllPermutationsOfString();
 
     @Test
-    public void testPrint() {
+    public void testPrintA() {
+        printer.print("a");
+    }
+
+    @Test
+    public void testPrintAA() {
+        printer.print("aa");
+    }
+
+    @Test
+    public void testPrintABC() {
         printer.print("abc");
     }
 

@@ -2,11 +2,10 @@ package alg.permute;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+public class EaePrintAllPermutationsOfStringTest {
 
-public class EaePermutationsTest {
-
-    final EaePermutations permuter = new EaePermutations();
+    final EaePrintAllPermutationsOfString permuter = new EaePrintAllPermutationsOfString();
+//    final EaePrintAllPermutationsOfStringWithShortCircuitedBaseCase permuter = new EaePrintAllPermutationsOfStringWithShortCircuitedBaseCase();
 
     @Test
     public void permute0() {
@@ -25,7 +24,7 @@ public class EaePermutationsTest {
 
     @Test
     public void permute4() {
-        permuter.permute("abcd".toCharArray());
+        permuter.permute("0123455789".toCharArray());
     }
 
     @Test
