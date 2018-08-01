@@ -2,7 +2,6 @@ package alg.weirdleetcode;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Stack;
 
 /**
  * Given a string containing just the characters '(' and ')',
