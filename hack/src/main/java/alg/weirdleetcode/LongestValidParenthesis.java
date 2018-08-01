@@ -7,6 +7,9 @@ import java.util.LinkedList;
  * Given a string containing just the characters '(' and ')',
  * find the length of the longest valid (well-formed) parentheses substring.
  *
+ * Time complexity  : O(n)
+ * Space complexity : O(n)
+ *
  * https://leetcode.com/problems/longest-valid-parentheses/description/
  */
 public class LongestValidParenthesis {
