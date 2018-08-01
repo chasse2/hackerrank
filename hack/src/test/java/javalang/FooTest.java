@@ -4,9 +4,9 @@ import javalang.Def;
 import org.junit.Test;
 
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,9 +30,7 @@ public class FooTest {
     }
 
     @Test
-    public final void test() {
-//        assertEquals(0, searchInsert(new int[]{ 0 }, 0));
-        assertEquals(4, searchInsert(new int[]{ 1, 2, 5, 6 }, 7));
+    public final void test() throws Exception {
     }
 
     public int searchInsert(int[] nums, int target) {
