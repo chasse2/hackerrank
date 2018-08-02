@@ -7,6 +7,7 @@ import alg.linkedlist.ListNode;
  * Could you do it in O(n) time and O(1) space?
  *
  * Algorithm:
+ * Tortoise/hare to find midpoint
  * Reverse 2nd half, then compare the two
  *
  * https://leetcode.com/problems/palindrome-linked-list/description/
