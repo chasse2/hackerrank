@@ -1,7 +1,6 @@
 package alg.linkedlist;
 
 public class LinkedListGenerator {
-
     public ListNode generate(final int length) {
         if (length < 1) {
             return null;
