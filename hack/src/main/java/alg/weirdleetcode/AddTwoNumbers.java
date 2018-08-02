@@ -13,8 +13,12 @@ import alg.linkedlist.ListNode;
  *
  * Algorithm:
  * The head node will always contain the least-significant digit ...
- * Iterate over each list,
+ * Iterate over each list, keeping track of carry-over.
+ * Create result along the way.
+ * Note: create initial head with value 0, then return head.next - avoids extra code.
+ *
  * https://leetcode.com/problems/add-two-numbers/description/
+ * Beats 85.18% of Java submissions
  */
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -26,29 +30,13 @@ public class AddTwoNumbers {
             return l1;
         }
 
-        ListNode head = null;
-        ListNode current = null;
-        int val = 0;
+        ListNode head = new ListNode(0);
+        ListNode current = head;
 
-        if (l1 != null) {
-            val += l1.val;
-            l1 = l1.next;
-        }
-
-        if (l2 != null) {
-            val += l2.val;
-            l2 = l2.next;
-        }
-
-        int digit = val % 10;
-
-        head = new ListNode(digit);
-        current = head;
-
-        int carryOver = val / 10;
+        int carryOver = 0;
 
         while (l1 != null || l2 != null) {
-            val = carryOver;
+            int val = carryOver;
 
             if (l1 != null) {
                 val += l1.val;
@@ -70,6 +58,6 @@ public class AddTwoNumbers {
             current.next = new ListNode(carryOver % 10);
         }
 
-        return head;
+        return head.next;
     }
 }
