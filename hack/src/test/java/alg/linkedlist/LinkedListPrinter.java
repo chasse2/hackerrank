@@ -6,6 +6,10 @@ public class LinkedListPrinter {
 
     final PrintStream stream;
 
+    LinkedListPrinter() {
+        this.stream = System.out;
+    }
+
     LinkedListPrinter(final PrintStream stream) {
         this.stream = stream;
     }
