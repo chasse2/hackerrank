@@ -14,6 +14,13 @@ import java.util.*;
  *
  * Reference: https://www.nayuki.io/page/next-lexicographical-permutation-algorithm
  *
+ * Algorithm (Nayuki) is to successively call nextPermutation for known # of permutations times.
+ * Number of permutations for a string with no duplicate chars is n!
+ * Number of ALL permutations for a string with duplicate chars is n!
+ * Number of UNIQUE permuations for a duplicate chars is (n! / x!), where x is:
+ * E.g. for mississippi, which has 4 of i, 4 of s, and 2 of p, denominator x is 4!4!2!
+ * There are thus 11!/ (4!4!2!) unique permutations
+ *
  * 1) Find longest weakly decreasing (i.e. non-increasing) suffix
  *    If it is the length of the string, we are at the last permutation
  *    This suffix will have a minimum length of 1
