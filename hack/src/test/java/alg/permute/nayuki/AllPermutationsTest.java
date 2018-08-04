@@ -12,4 +12,14 @@ public class AllPermutationsTest {
     public void allPermuations() {
         instance.allPermuations("bcda".toCharArray());
     }
+
+    @Test
+    public void allPermuationsWithDuplications() {
+        instance.allPermuations("aabc".toCharArray());
+    }
+
+    @Test
+    public void allPermuationsMississippi() {
+        instance.allPermuations("Mississippi".toCharArray());
+    }
 }

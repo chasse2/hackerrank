@@ -1,5 +1,7 @@
 package alg.permute.nayuki;
 
+import java.util.*;
+
 /**
  * Compute all permutations of given string by repeatly
  * finding next lexicographical permutation.
@@ -19,24 +21,38 @@ package alg.permute.nayuki;
  *    Swap the pivot with this value O(1)
  * 4) Sort the suffix into weaking increasing (i.e. non-decreasing) order by reversing it O(n)
  *    Voila! O(3n) = O(n)
+ *
+ *
  */
 public class AllPermutations {
+    final boolean uniqueOnly;
+
+    public AllPermutations() {
+        uniqueOnly = true;
+    }
+
+    public AllPermutations(boolean uniqueOnly) {
+        this.uniqueOnly = uniqueOnly;
+    }
+
     final public void allPermuations(final char[] s) {
         if (s.length == 0) {
             return;
         }
 
-        int numPermutations = 1;
+        final int numPermutations;
 
-        for (int i = 1; i <= s.length; i++) {
-            numPermutations *= i;
+        if (uniqueOnly) {
+            numPermutations = this.numberOfUniquePermutations(s);
+        } else {
+            numPermutations = this.numberOfPermutationsIncludingDuplicates(s);
         }
 
-        System.out.println(s);
+        System.out.println(new StringBuilder().append(0).append( " ").append(s));
 
         for (int i = 1; i < numPermutations; i++) {
             nextPermutation(s);
-            System.out.println(s);
+            System.out.println(new StringBuilder().append(i).append( " ").append(s));
         }
     }
 
@@ -63,6 +79,46 @@ public class AllPermutations {
 
         swap(s, pivotIndex, suffixValueToSwap);
         reverse(s, headOfSuffix);
+    }
+
+    private int numberOfPermutationsIncludingDuplicates(final char[] s) {
+        int numPermutations = 1;
+
+        for (int i = 1; i <= s.length; i++) {
+            numPermutations *= i;
+        }
+
+        return numPermutations;
+    }
+
+    private int numberOfUniquePermutations(final char[] s) {
+        final Map<Character, Integer> characterCounts = new HashMap();
+        for (char c : s) {
+            if (characterCounts.containsKey(c)) {
+                int count = characterCounts.get(c);
+                characterCounts.put(c, ++count);
+            } else {
+                characterCounts.put(c, 1);
+            }
+        }
+
+        int numerator = numberOfPermutationsIncludingDuplicates(s);
+        int denominator = 1;
+
+        for (Integer v : characterCounts.values()) {
+            denominator *= factorial(v);
+        }
+
+        return numerator / denominator;
+    }
+
+    private int factorial(final int v) {
+        int result = 1;
+        for (int i = v; i > 1; i--) {
+            result *= i;
+        }
+
+        return result;
     }
 
     private void reverse(final char[] s, int i) {
