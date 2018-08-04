@@ -6,6 +6,9 @@ import java.util.*;
  * Compute all permutations of given string by repeatly
  * finding next lexicographical permutation.
  *
+ * May optionally include duplicates (occur if characters repeat in input sequence).
+ * Default is unique permutations only.
+ *
  * Time Complexity: O(n*n) = O(n-squared)
  * Space Complexity: O(1)
  *
@@ -21,7 +24,6 @@ import java.util.*;
  *    Swap the pivot with this value O(1)
  * 4) Sort the suffix into weaking increasing (i.e. non-decreasing) order by reversing it O(n)
  *    Voila! O(3n) = O(n)
- *
  *
  */
 public class AllPermutations {
@@ -56,30 +58,6 @@ public class AllPermutations {
         }
     }
 
-    private void nextPermutation(final char[] s) {
-        int headOfSuffix = s.length - 1;
-
-        while (headOfSuffix > 0 && s[headOfSuffix - 1] >= s[headOfSuffix]) {
-            headOfSuffix--;
-        }
-
-        char tmp;
-
-        if (headOfSuffix == 0) {
-            reverse(s, 0);          // Last permutation - simply reverse string and return
-            return;
-        }
-
-        final int pivotIndex = headOfSuffix - 1;
-
-        int suffixValueToSwap = s.length - 1;
-        while (s[suffixValueToSwap] <= s[pivotIndex]) {
-            suffixValueToSwap--;
-        }
-
-        swap(s, pivotIndex, suffixValueToSwap);
-        reverse(s, headOfSuffix);
-    }
 
     private int numberOfPermutationsIncludingDuplicates(final char[] s) {
         int numPermutations = 1;
@@ -92,7 +70,7 @@ public class AllPermutations {
     }
 
     private int numberOfUniquePermutations(final char[] s) {
-        final Map<Character, Integer> characterCounts = new HashMap();
+        final Map<Character, Integer> characterCounts = new HashMap<>();
         for (char c : s) {
             if (characterCounts.containsKey(c)) {
                 int count = characterCounts.get(c);
@@ -110,6 +88,29 @@ public class AllPermutations {
         }
 
         return numerator / denominator;
+    }
+
+    private void nextPermutation(final char[] s) {
+        int headOfSuffix = s.length - 1;
+
+        while (headOfSuffix > 0 && s[headOfSuffix - 1] >= s[headOfSuffix]) {
+            headOfSuffix--;
+        }
+
+        if (headOfSuffix == 0) {
+            reverse(s, 0);          // Last permutation - simply reverse string and return
+            return;
+        }
+
+        final int pivotIndex = headOfSuffix - 1;
+
+        int suffixValueToSwap = s.length - 1;
+        while (s[suffixValueToSwap] <= s[pivotIndex]) {
+            suffixValueToSwap--;
+        }
+
+        swap(s, pivotIndex, suffixValueToSwap);
+        reverse(s, headOfSuffix);
     }
 
     private int factorial(final int v) {
