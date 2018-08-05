@@ -16,4 +16,9 @@ public class ThreeSumTest {
         actual.forEach(System.out::println);
     }
 
+    @Test
+    public void threeSum000() {
+        List<List<Integer>> actual = instance.threeSum(new int[]{0, 0, 0 });
+        actual.forEach(System.out::println);
+    }
 }

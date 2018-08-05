@@ -20,7 +20,7 @@ import java.util.*;
  *   [-1, -1, 2]
  * ]
  * https://leetcode.com/problems/3sum/description/
- * Beats only 2.84%! :-(
+ * Beats only 4.34%! :-(                            ========== MAY REVISIT =========
  * Time Complexity is O(n-squared)
  * Space Complexity is O(n)
  */
@@ -39,11 +39,7 @@ public class ThreeSum {
                 int v2 = nums[j];
                 int v3 = 0 - v1 - v2;
                 if (candidates.contains(v3)) {
-                    List<Integer> result = new ArrayList<>(3);
-                    result.add(v1);
-                    result.add(v2);
-                    result.add(v3);
-                    uniqueResults.add(result);
+                    uniqueResults.add(Arrays.asList(v1, v2, v3));
                 }
                 candidates.add(v2);
             }
