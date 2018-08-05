@@ -31,6 +31,8 @@ public class FooTest {
 
     @Test
     public final void test() throws Exception {
+        Thread thread = new Thread();
+        thread.setDaemon(true);
     }
 
     public int searchInsert(int[] nums, int target) {
