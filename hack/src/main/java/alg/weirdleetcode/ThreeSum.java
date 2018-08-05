@@ -11,7 +11,7 @@ import java.util.*;
  * Example:
  * Given array nums = [-1, 0, 1, 2, -1, -4],
  *
- * Algorithm:
+ * Algorithm (not best - best seems to involve some kind of binary search):
  * Iterate over nums, making each one the "first" num
  * Perform "Two Sum" solution on remaining numbers, with the first as the target sum
  * A solution set is:

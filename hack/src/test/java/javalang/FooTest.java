@@ -31,8 +31,12 @@ public class FooTest {
 
     @Test
     public final void test() throws Exception {
-        Thread thread = new Thread();
-        thread.setDaemon(true);
+        List<String> list = Collections.synchronizedList(new ArrayList<>());
+        synchronized (list) {
+            if (!list.isEmpty()) {
+                list.remove(0);
+            }
+        }
     }
 
     public int searchInsert(int[] nums, int target) {
