@@ -1,5 +1,7 @@
 package javalang;
 
+import interview.barclays.BestPackageFinder;
+import interview.barclays.Thing;
 import javalang.Def;
 import org.junit.Test;
 
@@ -31,9 +33,37 @@ public class FooTest {
     }
 
     @Test
+    public final void test2() throws Exception {
+        final String line = "81 : (1,53.38,$45) (2,88.62,$98) (3,78.48,$3) (4,72.30,$76) (5,30.18,$9) (6,46.34,$48)";
+//        final String line = "75 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
+        final String[] parts = line.split(" : ");
+        final String[] items = parts[1].split(" ");
+
+        final int W = Integer.valueOf(parts[0]) * 100;
+        final int n = items.length;
+
+//        final int[] v = new int[n];
+//        final int[] w = new int[n];
+
+        final List<Thing> things = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            final String s = items[i].substring(1, items[i].length() - 1);
+            final String[] item = s.split(",");
+            final int num = Integer.valueOf(item[0]);
+            final int weight = new BigDecimal(item[1]).scaleByPowerOfTen(2).intValue();
+            final int cost = Integer.valueOf(item[2].substring(1));
+            things.add(new Thing(num, weight, cost));
+        }
+
+        final BestPackageFinder bestPackageFinder = new BestPackageFinder(things);
+        bestPackageFinder.find();
+    }
+
+    @Test
     public final void test() throws Exception {
-//        final String line = "81 : (1,53.38,$45) (2,88.62,$98) (3,78.48,$3) (4,72.30,$76) (5,30.18,$9) (6,46.34,$48)";
-        final String line = "75 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
+        final String line = "81 : (1,53.38,$45) (2,88.62,$98) (3,78.48,$3) (4,72.30,$76) (5,30.18,$9) (6,46.34,$48)";
+//        final String line = "75 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
         final String[] parts = line.split(" : ");
         final String[] items = parts[1].split(" ");
 
@@ -64,20 +94,37 @@ public class FooTest {
             m[0][j] = 0;
         }
 
+        int finalCost = 0;
+
         for (int i = 1; i <= n; ++i) {
             for (int j = 0; j <= W; ++j) {
-//              if (w[i] > j) {
+////              if (w[i] > j) {
                 if (w[i-1] > j) {
                     m[i][j] = m[i - 1][j];
-                    if (m[i][j] != 0) {
-                        System.out.println("a " + i + " " + j + " " + m[i][j]);
+                    if (m[i][j] != finalCost) {
+                        finalCost  = m[i][j];
+                        System.out.println("a " + i + " " + j + " " + finalCost);
                     }
                 } else {
-//                    m[i][j] = Math.max(m[i-1][j], m[i-1][j-w[i]] + v[i]);
-                    m[i][j] = Math.max(m[i-1][j], m[i-1][j-w[i-1]] + v[i-1]);
-                    if (m[i][j] != 0) {
-                        System.out.println("b " + i + " " + j + " " + m[i][j]);
+////                    m[i][j] = Math.max(m[i-1][j], m[i-1][j-w[i]] + v[i]);
+
+                    if (m[i-1][j] >= m[i-1][j-w[i-1]] + v[i-1]) {
+                        m[i][j] = m[i-1][j];
+                        if (m[i][j] != finalCost) {
+                            finalCost = m[i][j];
+                            System.out.println("b " + i + " " + j + " " + finalCost);
+                        }
+                    } else {
+                        m[i][j] = m[i-1][j-w[i-1]] + v[i-1];
+                        if (m[i][j] != finalCost) {
+                            finalCost = m[i][j];
+                            System.out.println("c " + i + " " + j + " " + finalCost + " " + v[i-1]);
+                        }
                     }
+//                    m[i][j] = Math.max(m[i-1][j], m[i-1][j-w[i-1]] + v[i-1]);
+//                    if (m[i][j] != 0) {
+//                        System.out.println("b " + i + " " + j + " " + m[i][j]);
+//                    }
                 }
             }
         }
