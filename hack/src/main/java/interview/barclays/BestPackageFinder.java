@@ -1,20 +1,22 @@
 package interview.barclays;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BestPackageFinder {
     private final List<Thing> things = new ArrayList<>();
-    private Deque<Thing> combination = new LinkedList<>();
+    private final int maxWeight;
 
-    public BestPackageFinder(final List<Thing> things) {
+    private Deque<Thing> combination = new LinkedList<>();
+    private Package bestPackage = new Package(Collections.emptyList());
+
+    public BestPackageFinder(final List<Thing> things, final int maxWeight) {
         this.things.addAll(things);
+        this.maxWeight = maxWeight;
     }
 
     public /*int[]*/ void find() {
         this.combine();
+        System.out.println("Best Package : " + this.bestPackage.toString());
     }
 
     private void combine() {
@@ -22,12 +24,21 @@ public class BestPackageFinder {
     }
 
     private void combine(final int start) {
-        for (int i = start; i < things.size(); ++i) {
-            combination.push(things.get(i));
-            final Package pkg = new Package(new ArrayList(combination));
-            System.out.println(pkg.toString());
+        for (int i = start; i < this.things.size(); ++i) {
+            combination.push(this.things.get(i));
+            final List<Thing> curentThings = new ArrayList<>(combination);
+            curentThings.sort(Comparator.comparingInt(x -> x.number));
+            final Package currentPackage = new Package(curentThings);
+            System.out.println(currentPackage.toString());
 
-            if (i < combination.size()) {
+            if (currentPackage.weight <= this.maxWeight) {
+                if ((currentPackage.cost > bestPackage.cost) ||
+                        currentPackage.cost == bestPackage.cost && currentPackage.weight < bestPackage.weight) {
+                    bestPackage = currentPackage;
+                }
+            }
+
+            if (i < things.size()) {
                 combine(i + 1);
             }
             combination.pop();

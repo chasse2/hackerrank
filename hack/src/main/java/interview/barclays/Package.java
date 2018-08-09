@@ -1,6 +1,7 @@
 package interview.barclays;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Package {
@@ -15,6 +16,10 @@ public class Package {
     }
 
     public String toString() {
+        if (things.size() == 0) {
+            return "-";
+        }
+
         final StringBuilder s = new StringBuilder();
         s.append("weight: " + this.weight);
         s.append(" cost: " + this.cost);
