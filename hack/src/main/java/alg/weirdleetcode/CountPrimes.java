@@ -6,9 +6,9 @@ package alg.weirdleetcode;
  * Algorithm:
  * Note: 2 is the first prime number
  * 1) Start with list of numbers 2 thru N
- * 2) Cross off all numbers divisible by 2
+ * 2) Cross off all numbers divisible by 2 (excluding 2)
  * 3) Find next number not crossed off
- * 4) Cross off all numbers divible by it
+ * 4) Cross off all numbers divible by it (excluding it)
  * 5) Etc ...
  * 6) Count number of numbers not crossed off ...
  * https://leetcode.com/problems/count-primes/description/
