@@ -1,5 +1,7 @@
 package javalang;
 
+import com.sun.deploy.util.StringUtils;
+import com.sun.tools.javac.util.ArrayUtils;
 import interview.barclays.BestPackageFinder;
 import interview.barclays.Thing;
 import javalang.Def;
@@ -32,11 +34,102 @@ public class FooTest {
         public String page;
     }
 
+    public class Thing {
+        public final int number;
+        public final int weight;
+        public final int cost;
+
+        public Thing(final int number, final int weight, final int cost) {
+            this.number = number;
+            this.weight = weight;
+            this.cost = cost;
+        }
+    }
+
+    public class Package {
+        final List<Thing> things = new ArrayList<>();
+        public final int weight;
+        public final int cost;
+        public final int[] numbers;
+
+        public Package(final List<Thing> things) {
+            this.things.addAll(things);
+            this.weight = things.stream().mapToInt(x -> x.weight).sum();
+            this.cost = things.stream().mapToInt(x -> x.cost).sum();
+            this.numbers = things.stream().mapToInt(x -> x.number).toArray();
+        }
+
+        public String toResultString() {
+            if (things.size() == 0) {
+                return "-";
+            }
+
+            return Arrays.stream(numbers)
+                    .mapToObj(String::valueOf)
+                    .collect(Collectors.joining(","));
+        }
+
+        public String toString() {
+            final StringBuilder s = new StringBuilder();
+            s.append("weight: " + this.weight);
+            s.append(" cost: " + this.cost);
+            things.forEach(x -> {
+                s.append( " (" + x.number + "," + x.weight + "," + x.cost + ")");
+            });
+            return s.toString();
+        }
+    }
+
+    public class BestPackageFinder {
+        private final List<Thing> things = new ArrayList<>();
+        private final int maxWeight;
+
+        private Deque<Thing> combination = new LinkedList<>();
+        private Package bestPackage = new Package(Collections.emptyList());
+
+        public BestPackageFinder(final List<Thing> things, final int maxWeight) {
+            this.things.addAll(things);
+            this.maxWeight = maxWeight;
+        }
+
+        public String find() {
+            this.combine();
+//        System.out.println("Best Package : " + this.bestPackage.toString());
+            return bestPackage.toResultString();
+        }
+
+        private void combine() {
+            this.combine(0);
+        }
+
+        private void combine(final int start) {
+            for (int i = start; i < this.things.size(); ++i) {
+                combination.push(this.things.get(i));
+                final List<Thing> curentThings = new ArrayList<>(combination);
+                curentThings.sort(Comparator.comparingInt(x -> x.number));
+                final Package currentPackage = new Package(curentThings);
+//            System.out.println(currentPackage.toString());
+
+                if (currentPackage.weight <= this.maxWeight) {
+                    if ((currentPackage.cost > bestPackage.cost) ||
+                            currentPackage.cost == bestPackage.cost && currentPackage.weight < bestPackage.weight) {
+                        bestPackage = currentPackage;
+                    }
+                }
+
+                if (i < things.size()) {
+                    combine(i + 1);
+                }
+                combination.pop();
+            }
+        }
+    }
+
     @Test
     public final void test2() throws Exception {
 //        final String line = "81 : (1,53.38,$45) (2,88.62,$98) (3,78.48,$3) (4,72.30,$76) (5,30.18,$9) (6,46.34,$48)";
-//        final String line = "75 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
-        final String line = "2 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
+        final String line = "1 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
+//        final String line = "2 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
         final String[] parts = line.split(" : ");
         final String[] items = parts[1].split(" ");
 
@@ -55,13 +148,14 @@ public class FooTest {
         }
 
         final BestPackageFinder bestPackageFinder = new BestPackageFinder(things, W);
-        bestPackageFinder.find();
+        final String result = bestPackageFinder.find();
+        System.out.println(result);
     }
 
     @Test
     public final void test() throws Exception {
 //        final String line = "81 : (1,53.38,$45) (2,88.62,$98) (3,78.48,$3) (4,72.30,$76) (5,30.18,$9) (6,46.34,$48)";
-        final String line = "75 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
+        final String line = "1 : (1,85.31,$29) (2,14.55,$74) (3,3.98,$16) (4,26.24,$55) (5,63.69,$52) (6,76.25,$75) (7,60.02,$74) (8,93.18,$35) (9,89.95,$78)";
         final String[] parts = line.split(" : ");
         final String[] items = parts[1].split(" ");
 

@@ -14,9 +14,10 @@ public class BestPackageFinder {
         this.maxWeight = maxWeight;
     }
 
-    public /*int[]*/ void find() {
+    public int[] find() {
         this.combine();
-        System.out.println("Best Package : " + this.bestPackage.toString());
+//        System.out.println("Best Package : " + this.bestPackage.toString());
+        return bestPackage.numbers;
     }
 
     private void combine() {
@@ -29,7 +30,7 @@ public class BestPackageFinder {
             final List<Thing> curentThings = new ArrayList<>(combination);
             curentThings.sort(Comparator.comparingInt(x -> x.number));
             final Package currentPackage = new Package(curentThings);
-            System.out.println(currentPackage.toString());
+//            System.out.println(currentPackage.toString());
 
             if (currentPackage.weight <= this.maxWeight) {
                 if ((currentPackage.cost > bestPackage.cost) ||

@@ -1,18 +1,19 @@
 package interview.barclays;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Package {
     final List<Thing> things = new ArrayList<>();
     public final int weight;
     public final int cost;
+    public final int[] numbers;
 
     public Package(final List<Thing> things) {
         this.things.addAll(things);
         this.weight = things.stream().mapToInt(x -> x.weight).sum();
         this.cost = things.stream().mapToInt(x -> x.cost).sum();
+        this.numbers = things.stream().mapToInt(x -> x.number).toArray();
     }
 
     public String toString() {
