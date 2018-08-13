@@ -52,7 +52,7 @@ public class Trie {
         queue.add(terminalNode);
 
         while (!queue.isEmpty()) {
-            final TrieNode node = queue.poll();
+            final TrieNode node = queue.remove();
 
             for (TrieNode child : node.children.values()) {
                 if (child.isWord) {

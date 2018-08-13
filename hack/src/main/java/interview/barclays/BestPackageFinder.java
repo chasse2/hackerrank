@@ -2,6 +2,33 @@ package interview.barclays;
 
 import java.util.*;
 
+/**
+ * You want to send your friend a package with different things.
+ * Each thing you put inside of a package has such parameters as
+ *   index number,
+ *   weight and
+ *   cost.
+ * The package has a weight limitation.
+ * Your goal is to determine which things to put into the package so that the total weight is
+ * less than or equal to the package limit and the total cost is as large as possible.
+ * This is a variation of Knapsack problem
+ *
+ * Input sample:
+ * Your program should accept as its first argument a path to a filename.
+ * The input file contains several lines. Each line is one test case.
+ * Each line contains the weight that a package can take (before the colon)
+ * and the list of things you need to pick from.
+ * Each thing is enclosed in parentheses where 1st number is a thing's index number,
+ * the 2nd is it's weight and the 3rd is it's cost. E.g.
+ * 81 : (1,53.38,$45) (2,88.62,$98) (3,78.48,$3) (4,72.30,$76) (5,30.18,$9) (6,46.34,$48)
+ * 8 : (1,15.3,$34)
+ *
+ * Constraints:
+ * Max weight any package can take is <= 100.
+ * There might be up to 15 things you need to choose from.
+ * https://github.com/gavinc88/MiniProjects/blob/master/Package.java
+ */
+
 public class BestPackageFinder {
     private final List<Thing> things = new ArrayList<>();
     private final int maxWeight;

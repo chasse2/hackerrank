@@ -17,9 +17,9 @@ public class Combinations {
             out.append(this.in.charAt(i));
             System.out.println(out);
 
-            if (i < in.length()) {
+//            if (i < in.length()) {
                 combine(i + 1);
-            }
+//            }
 
             out.setLength(out.length() - 1);
         }
