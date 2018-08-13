@@ -21,20 +21,25 @@ import java.util.*;
 public class LengthOfLongestSubstring {
 
     public final int calculate(final String s) {
-        int answer = 0;
-        final Map<Character, Integer> map = new HashMap<>();
-
-        for (int i = 0, j = 0; j < s.length(); ++j) {
-            final Character c = s.charAt(j);
-
-            if (map.containsKey(c)) {
-                i = Math.max(i, map.get(c) + 1);
-            }
-
-            answer = Math.max(answer, j - i + 1);
-            map.put(c, j);
+        if (s.length() < 2) {
+            return s.length();
         }
 
-        return answer;
+        final Map<Character, Integer> characterIndexMap = new HashMap<>();
+        int lengthOfLongestSubstring = 0;
+        int startOfCurrentSubstring = 0;
+
+        for (int i = 0; i < s.length(); ++i) {
+            final char c = s.charAt(i);
+
+            if (characterIndexMap.containsKey(c)) {
+                startOfCurrentSubstring = Math.max(startOfCurrentSubstring, characterIndexMap.get(c) + 1);
+            }
+
+            lengthOfLongestSubstring = Math.max(lengthOfLongestSubstring,  i - startOfCurrentSubstring + 1);
+            characterIndexMap.put(c, i);
+        }
+
+        return lengthOfLongestSubstring;
     }
 }
