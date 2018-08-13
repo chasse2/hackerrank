@@ -5,18 +5,19 @@ import java.util.*;
 /**
  * Given a string, find the length of the longest substring without repeating characters.
  *
- * This alg uses sliding window approach.
+ * Algorithm (This is the most efficient one in the Leetcode descriptions):
+ * Set lengthOfLongestSubstring and startOfCurrentSubstring to 0.
+ * Iterate over string.
+ * For each character:
+ *   If it has already been seen (is in map), then
+ *     update startOfCurrentSubstring to max(startOfCurrentSubstring, indexOfLastOccurrence + 1)
+ *   Update lengthOfLongestSubstring to max(lengthOfLongestSubstring, i - startOfCurrentSubstring + 1
+ *   Add character and index to map
+ * Return lengthOfLongestSubstring
  *
- * In the worst case, each character will be visited twice - once by j and once by i.
+ * Leetcode: https://leetcode.com/problems/longest-substring-without-repeating-characters/solution/
  *
- * Time complexity : O(2n) = O(n)
- * Space complexity is size of map: O(min(16, m)) where m is the number of unique characters in s
- *
- * Possible improvements:
- * 1) If information is known about the character set, could replace Map with int[],
- *    and use character as index ...
- *
- * LeetCode: https://leetcode.com/problems/longest-substring-without-repeating-characters/solution/
+ * Time complexity: O(n)
  */
 public class LengthOfLongestSubstring {
 
