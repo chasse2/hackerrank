@@ -41,10 +41,9 @@ public class BestPackageFinder {
         this.maxWeight = maxWeight;
     }
 
-    public int[] find() {
+    public String find() {
         this.combine();
-//        System.out.println("Best Package : " + this.bestPackage.toString());
-        return bestPackage.numbers;
+        return bestPackage.toResultString();
     }
 
     private void combine() {
@@ -57,7 +56,6 @@ public class BestPackageFinder {
             final List<Thing> curentThings = new ArrayList<>(combination);
             curentThings.sort(Comparator.comparingInt(x -> x.number));
             final Package currentPackage = new Package(curentThings);
-//            System.out.println(currentPackage.toString());
 
             if (currentPackage.weight <= this.maxWeight) {
                 if ((currentPackage.cost > bestPackage.cost) ||
@@ -66,9 +64,10 @@ public class BestPackageFinder {
                 }
             }
 
-            if (i < things.size()) {
+// NOTE: Commented out these two lines since submission to Barclay's
+//            if (i < things.size()) {
                 combine(i + 1);
-            }
+//            }
             combination.pop();
         }
     }

@@ -1,7 +1,9 @@
 package interview.barclays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Package {
     final List<Thing> things = new ArrayList<>();
@@ -14,6 +16,16 @@ public class Package {
         this.weight = things.stream().mapToInt(x -> x.weight).sum();
         this.cost = things.stream().mapToInt(x -> x.cost).sum();
         this.numbers = things.stream().mapToInt(x -> x.number).toArray();
+    }
+
+    public String toResultString() {
+        if (things.size() == 0) {
+            return "-";
+        }
+
+        return Arrays.stream(numbers)
+                .mapToObj(String::valueOf)
+                .collect(Collectors.joining(","));
     }
 
     public String toString() {

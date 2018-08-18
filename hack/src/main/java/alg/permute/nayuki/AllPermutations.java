@@ -17,7 +17,7 @@ import java.util.*;
  * Algorithm (Nayuki) is to successively call nextPermutation for known # of permutations times.
  * Number of permutations for a string with no duplicate chars is n!
  * Number of ALL permutations for a string with duplicate chars is n!
- * Number of UNIQUE permuations for a duplicate chars is (n! / x!), where x is:
+ * Number of UNIQUE permuations for a string with duplicate chars is (n! / x!), where x is:
  * E.g. for mississippi, which has 4 of i, 4 of s, and 2 of p, denominator x is 4!4!2!
  * There are thus 11!/ (4!4!2!) unique permutations
  *
@@ -64,7 +64,6 @@ public class AllPermutations {
             System.out.println(new StringBuilder().append(i).append( " ").append(s));
         }
     }
-
 
     private int numberOfPermutationsIncludingDuplicates(final char[] s) {
         int numPermutations = 1;
