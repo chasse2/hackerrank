@@ -15,9 +15,9 @@ package designpattern.builder;
 
 public class Person {
 
-    private final String name;
-    private final int id;
-    private final int age;
+    public final String name;
+    public final int id;
+    public final int age;
 
     private Person(final Person.Builder builder) {
         this.name = builder.name;
